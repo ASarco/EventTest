@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
     <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
-
     <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
-
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <timeZone>UTC</timeZone>
-            <includeCallerData>true</includeCallerData>
-        </encoder>
-    </appender>
 
     <appender name="CONSOLE_LOCAL" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{"yyyy-MM-dd'T'HH:mm:ss,SSS"} %-5level %logger{50}-%L [%t]- R:%X{rid} H:%X{rhost} O:%X{oid} - %msg%n
-            </pattern>
-            <timeZone>UTC</timeZone>
+            <pattern>%d{"HH:mm:ss,SSS"} %-5level %logger{50}-%L - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -23,8 +13,10 @@
     <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
     <logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG" />
     <logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="TRACE" />
+    <logger name="com.github.dockerjava" level="INFO" />
+    <logger name="org.testcontainers" level="INFO" />
 
     <root level="INFO">
-        <appender-ref ref="${APPENDER:-CONSOLE}"/>
+        <appender-ref ref="${APPENDER:-CONSOLE_LOCAL}"/>
     </root>
 </configuration>

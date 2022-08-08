@@ -53,4 +53,22 @@ class EventTestApplicationTests {
         .extracting(Event::getId, Event::getTitle, Event::getVersion)
         .containsExactly(1, "E1", 0);
   }
+
+  @Test
+  void shouldReadEventFromDBAndUpdate() {
+    var event = eventService.getEventById(1);
+
+    assertThat(event)
+            .isNotNull()
+            .extracting(Event::getId, Event::getTitle, Event::getVersion)
+            .containsExactly(1, "E1", 0);
+
+    event.setTitle("Will");
+    var updatedEvent = eventService.save(event);
+
+    assertThat(updatedEvent)
+            .isNotNull()
+            .extracting(Event::getTitle, Event::getVersion)
+            .containsExactly("Will", 1);
+  }
 }

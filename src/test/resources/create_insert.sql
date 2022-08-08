@@ -46,8 +46,8 @@ CREATE TABLE `Event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-#CREATE INDEX Event_deleted_endDate_startDate_index ON Event(isDeleted,endDate,startDate);
-#CREATE INDEX Event_deleted_startDate_endDate_index ON Event(isDeleted,startDate,endDate);
+CREATE INDEX Event_deleted_endDate_startDate_index ON Event(isDeleted,endDate,startDate);
+CREATE INDEX Event_deleted_startDate_endDate_index ON Event(isDeleted,startDate,endDate);
 
 
 -- ================
